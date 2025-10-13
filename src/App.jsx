@@ -1,10 +1,12 @@
 import React from 'react'
+import Layout from './Layout/Layout'
 
 const App = () => {
   return (
-    <div className='border mt-5 p-5 bg-red-500 ml-40 ' >
-      h
-    </div>
+    <>
+      <Layout/>
+      
+    </>
   )
 }
 

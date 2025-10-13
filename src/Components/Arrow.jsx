@@ -11,7 +11,7 @@ const chevronVariants = {
   },
 };
 
-const ChevronsRight = ({
+const Arrow = ({
   width = 28,
   height = 28,
   strokeWidth = 2,
@@ -66,4 +66,4 @@ const ChevronsRight = ({
   );
 };
 
-export { ChevronsRight };
+export default Arrow;
