@@ -15,10 +15,12 @@ import OrderHistory from '../Pages/OrderHistory'
 import AboutUs from "../Pages/AboutUs.jsx";
 import Login from '../Pages/Login.jsx'
 import CreateAC from '../Pages/CreateAC.jsx'
+import Profile from '../Pages/Profile.jsx'
 const Layout = () => {
   return (
     <>
       <NavBar />
+      {/* <Profile/> */}
       {/* <Login/> */}
       {/* <CreateAC/> */}
       {/* <Home /> */}
