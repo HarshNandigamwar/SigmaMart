@@ -43,7 +43,7 @@ const NavBar = () => {
             <input
               type="text"
               placeholder="Search Product ..."
-              className="w-full p-2 rounded-tl-md rounded-bl-md text-[black] bg-[white] placeholder:text-blue-400 focus:outline-none "
+              className="w-full p-2 rounded-tl-md rounded-bl-md text-[black] bg-[white] placeholder:text-blue-400 focus:outline-none"
             />
             {/* Button */}
             <motion.button
@@ -140,7 +140,7 @@ const NavBar = () => {
                 className={`  flex items-center gap-3 text-xl font-bold p-2 `}
                 onClick={() => setMenuOpen(!menuOpen)}
               >
-                <FaBox className={`fill-white `} /> Order
+                <FaBox className={`fill-white `} /> My Orders
               </p>
               <p
                 className={`  flex items-center gap-3 text-xl font-bold p-2 `}
