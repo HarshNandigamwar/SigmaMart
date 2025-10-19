@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Arrow from "../Components/Arrow";
+import { NavLink, useNavigate } from "react-router-dom";
 import { FaBox, FaHeart, FaMagnifyingGlass, FaUser } from "react-icons/fa6";
 import {
   FaHome,
@@ -7,10 +7,31 @@ import {
   FaShoppingCart,
   FaThLarge,
 } from "react-icons/fa";
+// import from components
+import Arrow from "../Components/Arrow";
+import { useAuth } from "../Context/AuthProvider.jsx";
+// importing motion
 import { AnimatePresence, motion } from "framer-motion";
+// importing sonner fro notification
+import { toast } from "sonner";
 
 const NavBar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const navigate = useNavigate();
+  // Add to cart Button
+  const { currentUser } = useAuth();
+  function cart() {
+    if (currentUser) {
+      navigate("/cart");
+    } else {
+      toast.warning("Please login to proceed.", {
+        action: {
+          label: "Login",
+          onClick: () => navigate("/login"),
+        },
+      });
+    }
+  } 
   // Animation Variable for Mobile nav
   const sidebarVariants = {
     // hidden state
@@ -37,7 +58,9 @@ const NavBar = () => {
         {/* Top Nav */}
         <div className="flex items-center justify-between w-full px-3 md:gap-3">
           {/* logo   */}
-          <p className="font-bold text-2xl md:text-3xl ">SigmaMart</p>
+          <NavLink to={"/"}>
+            <p className="font-bold text-2xl md:text-3xl ">SigmaMart</p>
+          </NavLink>
           {/* Search */}
           <div className="hidden md:flex items-center w-full ">
             <input
@@ -58,6 +81,7 @@ const NavBar = () => {
             <motion.button
               whileTap={{ scale: 0.9 }}
               className="text-xl md:text-2xl "
+              onClick={() => cart()}
             >
               <FaShoppingCart />
             </motion.button>
@@ -117,43 +141,60 @@ const NavBar = () => {
             ></motion.div>
             {/* Main nav */}
             <div className="w-[50%] md:w-[20%] p-5 bg-blue-400 flex flex-col gap-3 ">
-              <p
-                className={`  flex items-center gap-3 text-xl font-bold p-2 `}
-                onClick={() => setMenuOpen(!menuOpen)}
-              >
-                {" "}
-                <FaHome className={`fill-white `} /> Home
-              </p>
-              <p
-                className={`  flex items-center gap-3 text-xl font-bold p-2 `}
-                onClick={() => setMenuOpen(!menuOpen)}
-              >
-                <FaHeart className={`fill-white `} /> Wishlist
-              </p>
-              <p
-                className={`  flex items-center gap-3 text-xl font-bold p-2 `}
-                onClick={() => setMenuOpen(!menuOpen)}
-              >
-                <FaThLarge className={`fill-white `} /> Categories
-              </p>
-              <p
-                className={`  flex items-center gap-3 text-xl font-bold p-2 `}
-                onClick={() => setMenuOpen(!menuOpen)}
-              >
-                <FaBox className={`fill-white `} /> My Orders
-              </p>
-              <p
-                className={`  flex items-center gap-3 text-xl font-bold p-2 `}
-                onClick={() => setMenuOpen(!menuOpen)}
-              >
-                <FaInfoCircle className={`fill-white `} /> About Us
-              </p>
-              <p
-                className={`  flex items-center gap-3 text-xl font-bold p-2 `}
-                onClick={() => setMenuOpen(!menuOpen)}
-              >
-                <FaUser className={`fill-white `} /> Profile
-              </p>
+              {/* Home */}
+              <NavLink to={"/"}>
+                <p
+                  className={`  flex items-center gap-3 text-xl font-bold p-2 `}
+                  onClick={() => setMenuOpen(!menuOpen)}
+                >
+                  <FaHome className={`fill-white `} /> Home
+                </p>
+              </NavLink>
+              {/* wishlist */}
+              <NavLink to={"wishlist"}>
+                <p
+                  className={`  flex items-center gap-3 text-xl font-bold p-2 `}
+                  onClick={() => setMenuOpen(!menuOpen)}
+                >
+                  <FaHeart className={`fill-white `} /> Wishlist
+                </p>
+              </NavLink>
+              {/* categories */}
+              <NavLink to={"categories"}>
+                <p
+                  className={`  flex items-center gap-3 text-xl font-bold p-2 `}
+                  onClick={() => setMenuOpen(!menuOpen)}
+                >
+                  <FaThLarge className={`fill-white `} /> Categories
+                </p>
+              </NavLink>
+              {/* Order History */}
+              <NavLink to={"orderhistory"}>
+                <p
+                  className={`  flex items-center gap-3 text-xl font-bold p-2 `}
+                  onClick={() => setMenuOpen(!menuOpen)}
+                >
+                  <FaBox className={`fill-white `} /> My Orders
+                </p>
+              </NavLink>
+              {/* About Us */}
+              <NavLink to={"about"}>
+                <p
+                  className={`  flex items-center gap-3 text-xl font-bold p-2 `}
+                  onClick={() => setMenuOpen(!menuOpen)}
+                >
+                  <FaInfoCircle className={`fill-white `} /> About Us
+                </p>
+              </NavLink>
+              {/* Profile */}
+              <NavLink to={"profile"}>
+                <p
+                  className={`  flex items-center gap-3 text-xl font-bold p-2 `}
+                  onClick={() => setMenuOpen(!menuOpen)}
+                >
+                  <FaUser className={`fill-white `} /> Profile
+                </p>
+              </NavLink>
             </div>
           </motion.div>
         )}

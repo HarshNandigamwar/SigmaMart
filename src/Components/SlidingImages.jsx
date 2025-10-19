@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+// importing motion for animation
 import { motion, AnimatePresence } from "framer-motion";
 // Import Images
 // Image for Mobile
@@ -13,8 +14,7 @@ import Img7 from "/SlidingImages/7.png";
 import Img8 from "/SlidingImages/8.png";
 import Img9 from "/SlidingImages/9.png";
 import Img10 from "/SlidingImages/10.jpeg";
-// Import from Components
-import Arrow from "./Arrow";
+
 
 const SlidingImages = (index) => {
   const [current, setCurrent] = useState(0);

@@ -1,7 +1,27 @@
 import React from "react";
-import { FaInstagram, FaLinkedin, FaTwitter } from "react-icons/fa6";
+import { FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa6";
+import { useNavigate } from "react-router-dom";
+// importing from context
+import { useAuth } from "../Context/AuthProvider";
+// importing sonner fro notification
+import { toast } from "sonner";
 
 const Footer = () => {
+  const navigate = useNavigate();
+  // Add to cart Button
+  const { currentUser } = useAuth();
+  function cart() {
+    if (currentUser) {
+      navigate("/cart");
+    } else {
+      toast.warning("Please login to proceed.", {
+        action: {
+          label: "Login",
+          onClick: () => navigate("/login"),
+        },
+      });
+    }
+  }
   return (
     <>
       <footer className="bg-blue-400 text-black py-12 px-4 font-inter">
@@ -15,39 +35,91 @@ const Footer = () => {
               <br />
               Bringing Quality to Your Doorstap.
             </p>
+            {/* Social icon */}
             <div className="flex space-x-5 pt-2">
-              <a href="" target="_blank">
-                <FaInstagram className="text-2xl " />
+              {/* Github */}
+              <a
+                href="https://github.com/HarshNandigamwar
+"
+                target="_blank"
+              >
+                <FaGithub className="text-2xl " />
               </a>
-              <a href="" target="_blank">
+              {/* x */}
+              <a href="https://x.com/Harsh477011?s=09" target="_blank">
                 <FaTwitter className="text-2xl" />
               </a>
-              <a href="">
+              {/* Linkedin */}
+              <a
+                href="https://www.linkedin.com/in/shriharsh-nandigamwar-b106702b1?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app
+"
+              >
                 <FaLinkedin className="text-2xl" />
               </a>
             </div>
           </div>
+          {/* Quick Links */}
           <div className="space-y-4">
             <h3 className="text-xl font-bold ">Quick Links</h3>
             <ul className="space-y-3">
-              <li>
-                <a href="#home">Home</a>
+              {/* Home */}
+              <li onClick={() => navigate("/")}>
+                <a>Home</a>
               </li>
-              <li>
-                <a href="#aboutus">About Us</a>
+              {/* About us */}
+              <li onClick={() => navigate("/about")}>
+                <a>About Us</a>
               </li>
-              <li>
-                <a href="#services">Services</a>
+              {/* Cart */}
+              <li onClick={() => cart()}>
+                <a>Cart Product</a>
               </li>
-              <li>
-                <a href="#worksamples">Work Samples</a>
+              {/* Wishlist */}
+              <li onClick={() => navigate("/wishlist")}>
+                <a>Wishlist</a>
               </li>
-              <li>
-                <a href="#contactus">Connect</a>
+              {/* Profile */}
+              <li onClick={() => navigate("/profile")}>
+                <a>Profile</a>
               </li>
             </ul>
           </div>
+          {/* Top Category */}
+          <div className="space-y-4">
+            <h3 className="text-xl font-bold ">Top Categories</h3>
+            <ul className="space-y-3">
+              {/* Mobile */}
+              <li onClick={() => navigate("/categoriesdetail/smartphones")}>
+                <a>Mobiles</a>
+              </li>
+              {/* Laptops */}
+              <li onClick={() => navigate("/categoriesdetail/laptops")}>
+                <a>Laptops</a>
+              </li>
+              {/* beauty */}
+              <li onClick={() => navigate("/categoriesdetail/beauty")}>
+                <a>Beauty</a>
+              </li>
+              {/* Watch */}
+              <li onClick={() => navigate("/categoriesdetail/mens-watches")}>
+                <a>Watch</a>
+              </li>
+              {/* Sun Glass */}
+              <li onClick={() => navigate("/categoriesdetail/sunglasses")}>
+                <a>Sun Glasses</a>
+              </li>
+            </ul>
+          </div>
+          {/* Contact */}
+          <div className="space-y-2">
+            <h3 className="text-xl font-bold">Contact Developer</h3>
+            <p>Rajura, Maharashtra, India</p>
+            <a href="shriharshnandigamwar.vercel.app" target="_blank">
+              shriharshnandigamwar.vercel.app
+            </a>
+          </div>
         </div>
+        {/* Copy rights */}
         <div className="text-center text-sm pt-10 mt-10 border-t border-[#1e1e1e]">
           <p>Made with ❤️ by Shriharsh</p>
           <p>
