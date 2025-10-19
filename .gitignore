@@ -16,6 +16,7 @@ dist-ssr
 # Environment Variables 
 # Yeh .env, .env.local, .env.development sab ko ignore karega
 .env*
+.env
 
 # Editor directories and files
 .vscode/*
