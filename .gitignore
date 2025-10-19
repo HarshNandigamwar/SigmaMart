@@ -6,12 +6,16 @@ yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
-.env
-.txt
+
+# Dependencies and Build
 node_modules
 dist
 dist-ssr
 *.local
+
+# Environment Variables 
+# Yeh .env, .env.local, .env.development sab ko ignore karega
+.env*
 
 # Editor directories and files
 .vscode/*
