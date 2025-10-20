@@ -8,7 +8,7 @@ import axios from "axios";
 // importing from sonner
 import { toast } from "sonner";
 // import Skeleton
-import CartSkeleton from "../Components/LoaderComponents/SkeletonLoaders/CartSkeleton";
+import CartSkeleton from "../Components/LoaderComponents/SkeletonLoaders/CartSkeleton.jsx";
 // importing from context
 import { useWishlist } from "../Context/WishlistProvider.jsx";
 
