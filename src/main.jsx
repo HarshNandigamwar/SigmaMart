@@ -26,7 +26,7 @@ import CategoriesDetail from "./Pages/CategoriesDetail.jsx";
 import ProductDetail from "./Pages/ProductDetail.jsx";
 import Cart from "./Pages/Cart.jsx";
 import Order from "./Pages/Order.jsx";
-import Wishlist from "./Pages/Wishlist.jsx";
+import Wishlist from "./Pages/WishList.jsx";
 import OrderHistory from "./Pages/OrderHistory";
 import AboutUs from "./Pages/AboutUs.jsx";
 import Login from "./Pages/Login.jsx";
