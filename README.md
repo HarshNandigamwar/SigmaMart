@@ -55,7 +55,7 @@ Follow these steps to set up SigmaMart locally:
 
 ### **Step 1: Clone the Repository**
 ```bash
-git clone <your-repo-link>
+git clone https://github.com/HarshNandigamwar/SigmaMart.git
 cd SigmaMart
 ```
 ### **Step 2: Install Dependencies**
