@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { FaBox, FaHeart, FaMagnifyingGlass, FaUser } from "react-icons/fa6";
 import {
@@ -31,7 +31,7 @@ const NavBar = () => {
         },
       });
     }
-  } 
+  }
   // Animation Variable for Mobile nav
   const sidebarVariants = {
     // hidden state
@@ -51,6 +51,69 @@ const NavBar = () => {
       },
     },
   };
+  // Placeholder text change in every 2 second
+  const placeholders = [
+    "Upgrade your style with MEN'S SHIRTS today!",
+    "Find the perfect pair of WOMEN'S SHOES!",
+    "Discover the latest SMARTPHONES & gadgets.",
+    "Unwind with luxurious SKIN CARE routines.",
+    "Need new FURNITURE? Browse our selection!",
+    "Time for a new look? Check out TOPS!",
+    "Accessorize: Explore our range of SUNGLASSES.",
+    "Gift yourself some BEAUTY essentials.",
+    "Invest in a classic MEN'S WATCHES.",
+    "Boost productivity with powerful LAPTOPS.",
+  ];
+  const [currentPlaceholder, setCurrentPlaceholder] = useState(placeholders[0]);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      setCurrentIndex((prevIndex) => {
+        const newIndex = (prevIndex + 1) % placeholders.length;
+        setCurrentPlaceholder(placeholders[newIndex]);
+        return newIndex;
+      });
+    }, 2000);
+    return () => clearInterval(intervalId);
+  }, []);
+
+  // Search product
+  let [inputValue, setInputValue] = useState("");
+  let productList = [
+    "smartphones",
+    "laptops",
+    "beauty",
+    "furniture",
+    "womens-shoes",
+    "mens-shirts",
+    "skin-care",
+    "sunglasses",
+    "tops",
+    "mens-watches",
+  ];
+  function Search() {
+    const trimmedInput = inputValue.trim();
+    const normalizedInput = trimmedInput.toLowerCase();
+    if (trimmedInput === "") {
+      toast.warning("Search Something");
+      setInputValue("");
+      return;
+    }
+    if (productList.includes(normalizedInput)) {
+      navigate(`/categoriesdetail/${normalizedInput}`);
+      setInputValue("");
+    } else {
+      toast.error("The item you search is not available yet.");
+      setInputValue("");
+    }
+  }
+  const handleKeyDown = (event) => {
+    if (event.key === "Enter") {
+      Search();
+      event.preventDefault();
+    }
+  };
+
   return (
     <>
       {/* Main Nav */}
@@ -65,13 +128,17 @@ const NavBar = () => {
           <div className="hidden md:flex items-center w-full ">
             <input
               type="text"
-              placeholder="Search Product ..."
+              placeholder={currentPlaceholder}
+              value={inputValue}
+              onChange={(e) => setInputValue(e.target.value)}
+              onKeyDown={handleKeyDown}
               className="w-full p-2 rounded-tl-md rounded-bl-md text-[black] bg-[white] placeholder:text-blue-400 focus:outline-none"
             />
             {/* Button */}
             <motion.button
               className="p-3 rounded-tr-md rounded-br-md bg-[white] "
               whileTap={{ scale: 0.9 }}
+              onClick={() => Search()}
             >
               <FaMagnifyingGlass className="fill-blue-400  " />
             </motion.button>
@@ -107,13 +174,17 @@ const NavBar = () => {
           {/*  Search */}
           <input
             type="text"
-            placeholder="Search Product ..."
+            placeholder={currentPlaceholder}
+            value={inputValue}
+            onChange={(e) => setInputValue(e.target.value)}
+            onKeyDown={handleKeyDown}
             className="w-full p-2 rounded-tl-md rounded-bl-md text-[black] bg-[white] placeholder:text-blue-400 focus:outline-none "
           />
           {/* Button */}
           <motion.button
             className="p-3 rounded-tr-md rounded-br-md bg-[white] "
             whileTap={{ scale: 0.9 }}
+            onClick={() => Search()}
           >
             <FaMagnifyingGlass className="fill-blue-400  " />
           </motion.button>

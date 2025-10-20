@@ -63,7 +63,7 @@ const OrderHistory = () => {
 // Display when no item found
   if (orders.length === 0) {
     return (
-      <div className="text-center p-10">
+      <div className="flex flex-col w-full h-screen items-center justify-center text-center">
         <h2 className="text-3xl font-bold text-gray-800">No Orders Found</h2>
         <p className="text-gray-500 mt-2">You haven't placed any orders yet.</p>
       </div>

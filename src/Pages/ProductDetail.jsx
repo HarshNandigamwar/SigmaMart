@@ -121,6 +121,7 @@ const ProductDetail = () => {
                   <motion.button
                     className="flex items-center justify-center border border-blue-500 rounded-md p-3 gap-2 w-[50%] bg-blue-400/30 text-2xl font-bold hover:bg-blue-500/30 cursor-pointer"
                     whileTap={{ scale: 0.9 }}
+                    onClick={() => Order(product.id)}
                   >
                     <FaBox /> Buy now
                   </motion.button>

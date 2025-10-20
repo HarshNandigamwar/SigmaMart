@@ -68,7 +68,7 @@ const Cart = () => {
 
   if (detailedCart.length === 0 && !loading) {
     return (
-      <div className="text-center p-10">
+      <div className="flex flex-col w-full h-screen items-center justify-center text-center">
         <h2 className="text-3xl font-bold text-gray-800">
           Your Cart is Empty 🛒
         </h2>
@@ -112,7 +112,10 @@ const Cart = () => {
                   onClick={() => navigate(`/productdetail/${item.id}`)}
                 >
                   <h2 className="text-lg font-semibold">{item.title}</h2>
-                  <p className="text-gray-600">${item.price}</p>
+                  <p className="text-gray-600">
+                    {" "}
+                    ₹ {Math.floor(item.price * 83)}
+                  </p>
                 </div>
                 <button
                   onClick={() => removeFromCart(item.id)}
@@ -136,8 +139,8 @@ const Cart = () => {
             Order Summary
           </h2>
           <div className="flex justify-between text-lg mb-2">
-            <span>Subtotal ({detailedCart.length} items):</span>
-            <span className="font-semibold">${totalPrice.toFixed(2)}</span>
+            <span>Total items:</span>
+            <span className="font-semibold">{detailedCart.length}</span>
           </div>
           <div className="flex justify-between text-lg mb-4">
             <span>Shipping:</span>
@@ -145,7 +148,7 @@ const Cart = () => {
           </div>
           <div className="flex justify-between text-xl font-bold border-t pt-4">
             <span>Total:</span>
-            <span>${totalPrice.toFixed(2)}</span>
+            <span> ₹ {Math.floor(totalPrice * 83)}</span>
           </div>
         </div>
       </div>

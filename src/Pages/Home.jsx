@@ -76,7 +76,7 @@ const Home = () => {
       try {
         setLoader(true);
         const response = await axios.get(
-          `https://dummyjson.com/products/category/smartphones?limit=1`
+          `https://dummyjson.com/products/category/smartphones`
         );
         setMobile(response.data.products);
         setLoader(false);
@@ -113,7 +113,7 @@ const Home = () => {
     async function fetchLaptop() {
       try {
         const response = await axios.get(
-          `https://dummyjson.com/products/category/laptops?limit=3`
+          `https://dummyjson.com/products/category/laptops`
         );
         setLaptop(response.data.products);
       } catch (error) {
@@ -141,7 +141,7 @@ const Home = () => {
         setLoader(false);
       }
     }
-    // fetchLaptop();
+    fetchLaptop();
   }, []);
   //Watch
   const [watch, setWatch] = useState([]);
@@ -149,7 +149,7 @@ const Home = () => {
     async function fetchWatch() {
       try {
         const response = await axios.get(
-          `https://dummyjson.com/products/category/mens-watches?limit=3`
+          `https://dummyjson.com/products/category/mens-watches`
         );
         setWatch(response.data.products);
       } catch (error) {
@@ -177,7 +177,7 @@ const Home = () => {
         setLoader(false);
       }
     }
-    // fetchWatch();
+    fetchWatch();
   }, []);
   //Shirt
   const [shirt, setShirt] = useState([]);
@@ -185,7 +185,7 @@ const Home = () => {
     async function fetchShirt() {
       try {
         const response = await axios.get(
-          `https://dummyjson.com/products/category/mens-shirts?limit=3`
+          `https://dummyjson.com/products/category/mens-shirts`
         );
         setShirt(response.data.products);
       } catch (error) {
@@ -213,7 +213,7 @@ const Home = () => {
         setLoader(false);
       }
     }
-    // fetchShirt();
+    fetchShirt();
   }, []);
   // Forward to product Detail page with ID
   const navigate = useNavigate();

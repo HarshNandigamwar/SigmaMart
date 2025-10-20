@@ -78,7 +78,7 @@ const Wishlist = () => {
 
   if (detailedWishlist.length === 0 && !loading) {
     return (
-      <div className="text-center p-10">
+      <div className="flex flex-col w-full h-screen items-center justify-center text-center">
         <h2 className="text-3xl font-bold text-gray-800">
           Your Wishlist is Empty 😔
         </h2>
@@ -127,7 +127,7 @@ const Wishlist = () => {
                 </h2>
                 {/* Price */}
                 <p className="text-xl font-bold text-indigo-700">
-                  ${item.price}
+                  ₹ {Math.floor(item.price * 83)}
                 </p>
                 <p className="text-sm text-gray-500">Stock: {item.stock}</p>
               </div>

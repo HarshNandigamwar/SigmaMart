@@ -64,9 +64,9 @@ createRoot(document.getElementById("root")).render(
     <Toaster position="top-center" richColors theme="dark" />
     <AuthProvider>
       <WishlistProvider>
-      <CartProvider>
-        <RouterProvider router={router} />
-      </CartProvider>
+        <CartProvider>
+          <RouterProvider router={router} />
+        </CartProvider>
       </WishlistProvider>
     </AuthProvider>
   </StrictMode>

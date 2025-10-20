@@ -25,7 +25,7 @@ const CategoriesDetail = () => {
       try {
         setloader(true);
         const response = await axios.get(
-          `https://dummyjson.com/products/category/${categorie}?limit=1`
+          `https://dummyjson.com/products/category/${categorie}`
         );
         setdetails(response.data.products);
         setloader(false);
@@ -55,8 +55,8 @@ const CategoriesDetail = () => {
       }
     }
     fetchCategories();
-  }, []);
- 
+  }, [categorie]);
+
   return (
     <div>
       {loader ? (
@@ -65,8 +65,8 @@ const CategoriesDetail = () => {
         <div className="pt-2 ">
           {/* Title */}
           <h1 className="text-4xl font-extrabold mb-8 text-center flex items-center justify-center gap-2 text-blue-500">
-          {categorie}
-      </h1>
+            {categorie}
+          </h1>
           {/* Gride */}
           <div className=" mt-5 md:mt-8 overflow-x-hidden w-full grid gap-y-2 gap-x-1 md:gap-5 xl:gap-10 grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 items-center">
             {details.map((data) => (

@@ -16,11 +16,12 @@ const HomePageCard = ({ id, img, name, price, dis }) => {
         <img
           src={img || "/ImageNotA.jpg"}
           alt={name}
+          className="flex items-center justify-center"
           onClick={() => Product(id)}
         />
       </div>
       <p className="text-xl ml-2" onClick={() => Product(id)}>
-        {name}
+        {name.slice(0, 12)}
       </p>
       <div className="flex gap-2" onClick={() => Product(id)}>
         <p className="ml-2">₹ {price}</p>

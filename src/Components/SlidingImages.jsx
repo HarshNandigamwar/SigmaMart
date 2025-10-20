@@ -3,18 +3,27 @@ import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 // Import Images
 // Image for Mobile
-import Img1 from "/SlidingImages/1.png";
-import Img2 from "/SlidingImages/2.jpeg";
-import Img3 from "/SlidingImages/3.jpeg";
-import Img4 from "/SlidingImages/4.jpeg";
-import Img5 from "/SlidingImages/5.png";
-// Image for tablet & Laptops
-import Img6 from "/SlidingImages/6.jpg";
-import Img7 from "/SlidingImages/7.png";
-import Img8 from "/SlidingImages/8.png";
-import Img9 from "/SlidingImages/9.png";
-import Img10 from "/SlidingImages/10.jpeg";
+let Img1 =
+  "https://res.cloudinary.com/darmatnf2/image/upload/v1760936806/1_y0g7n1.png";
+let Img2 =
+  "https://res.cloudinary.com/darmatnf2/image/upload/v1760936793/2_f38sea.jpg";
+let Img3 =
+  "https://res.cloudinary.com/darmatnf2/image/upload/v1760936794/3_rojg3k.jpg";
+let Img4 =
+  "https://res.cloudinary.com/darmatnf2/image/upload/v1760936800/4_mvvp76.jpg";
+let Img5 =
+  "https://res.cloudinary.com/darmatnf2/image/upload/v1760936847/5_hmtu8l.png";
 
+// Image for tablet & Laptops
+let Img6 =
+  "https://res.cloudinary.com/darmatnf2/image/upload/v1760936800/6_ni1dtl.jpg";
+let Img7 = "https://res.cloudinary.com/darmatnf2/image/upload/7_bfpeve.png";
+let Img8 =
+  "https://res.cloudinary.com/darmatnf2/image/upload/v1760936853/8_gnp1ae.png";
+let Img9 =
+  "https://res.cloudinary.com/darmatnf2/image/upload/v1760936858/9_bj7m7t.png";
+let Img10 =
+  "https://res.cloudinary.com/darmatnf2/image/upload/v1760936798/10_wzukym.jpg";
 
 const SlidingImages = (index) => {
   const [current, setCurrent] = useState(0);

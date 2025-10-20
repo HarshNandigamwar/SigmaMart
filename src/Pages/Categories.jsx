@@ -6,16 +6,27 @@ import CategoriesPageSkeleton from "../Components/LoaderComponents/SkeletonLoade
 // import from components
 import CategoriesCard from "../Components/CategoriesCard.jsx";
 // import images
-import Mobile from "/CategoryImages/mobile.jpeg";
-import Laptop from "/CategoryImages/laptops.jpeg";
-import Beauty from "/CategoryImages/beauty.jpeg";
-import Furniture from "/CategoryImages/furniture.jpeg";
-import Shoes from "/CategoryImages/ladyshoo.jpeg";
-import Shirt from "/CategoryImages/shirt.jpeg";
-import SkinCare from "/CategoryImages/skincare.jpeg";
-import Sunglass from "/CategoryImages/sungglass.jpeg";
-import Tops from "/CategoryImages/tops.jpeg";
-import Watch from "/CategoryImages/watch.jpeg";
+let Mobile =
+  "https://res.cloudinary.com/darmatnf2/image/upload/mobile_cigmra.jpg";
+let Laptop =
+  "https://res.cloudinary.com/darmatnf2/image/upload/v1760936910/laptops_h7plld.jpg";
+let Beauty =
+  "https://res.cloudinary.com/darmatnf2/image/upload/v1760936910/beauty_myldjz.jpg";
+let Furniture =
+  "https://res.cloudinary.com/darmatnf2/image/upload/v1760936910/furniture_ndc2di.jpg";
+let Shoes =
+  "https://res.cloudinary.com/darmatnf2/image/upload/v1760936909/ladyshoo_xprcjt.jpg";
+let Shirt =
+  " https://res.cloudinary.com/darmatnf2/image/upload/shirt_zeu8ks.jpg";
+let SkinCare =
+  " https://res.cloudinary.com/darmatnf2/image/upload/skincare_aa7gcq.jpg";
+let Sunglass =
+  "https://res.cloudinary.com/darmatnf2/image/upload/v1760936915/sungglass_ahppg3.jpg";
+let Tops =
+  "https://res.cloudinary.com/darmatnf2/image/upload/v1760936914/tops_uarwnx.jpg";
+let Watch =
+  "https://res.cloudinary.com/darmatnf2/image/upload/v1760936914/watch_wlqhi9.jpg";
+
 // importing from motion
 import { motion } from "framer-motion";
 

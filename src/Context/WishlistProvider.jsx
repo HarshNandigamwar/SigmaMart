@@ -45,7 +45,6 @@ export const WishlistProvider = ({ children }) => {
       }
       setLoading(false);
     };
-
     fetchWishlist();
   }, [currentUser, authLoading]);
 
