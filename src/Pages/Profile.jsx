@@ -4,6 +4,7 @@ import { FaBox, FaHeart } from "react-icons/fa6";
 import { FaInfoCircle, FaShoppingCart } from "react-icons/fa";
 // importing from hooks
 import useScrollToTop from "../Hooks/useScrollToTop";
+import playSound from "../Hooks/playSound";
 // import images
 import ImageNotFound from "/ImageNotA.jpg";
 // importing from components
@@ -23,14 +24,18 @@ const Profile = () => {
   }
   const { currentUser, logout } = useAuth();
   const UserImage = currentUser.photoURL;
+  const successfulSound = "/Sound/Successful.mp3";
+  const errorSound = "/Sound/Error.mp3";
   const handleLogout = async () => {
     try {
       await logout();
       toast.info("You have been logged out successfully.");
       navigate("/login");
+      playSound(successfulSound);
     } catch (error) {
       console.error("Logout Error:", error);
       toast.error("Logout failed. Please try again.");
+      playSound(errorSound);
     }
   };
 

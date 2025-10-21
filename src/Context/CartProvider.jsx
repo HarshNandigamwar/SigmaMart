@@ -14,6 +14,8 @@ import {
 import { useAuth } from "./AuthProvider";
 // importing from sonner
 import { toast } from "sonner";
+// import from Hook
+import playSound from "../Hooks/playSound";
 
 const CartContext = createContext();
 export const useCart = () => useContext(CartContext);
@@ -21,7 +23,7 @@ export const CartProvider = ({ children }) => {
   const { currentUser, loading: authLoading } = useAuth(); // Auth context se user mila
   const [cartItems, setCartItems] = useState([]); // Cart mein sirf Product IDs hongi
   const [loading, setLoading] = useState(true);
-
+  const successfulSound = "/Sound/Successful.mp3";
   //  1. Cart Data Load Hora jab user login ho
   useEffect(() => {
     if (authLoading || !currentUser) {
@@ -47,7 +49,7 @@ export const CartProvider = ({ children }) => {
       setLoading(false);
     };
     fetchCart();
-  }, [currentUser, authLoading]); 
+  }, [currentUser, authLoading]);
 
   // Adding cart item in firebase
   const addToCart = async (productId) => {
@@ -59,7 +61,7 @@ export const CartProvider = ({ children }) => {
         items: arrayUnion(productId),
       },
       { merge: true }
-    ); 
+    );
     setCartItems((prev) => [...prev, productId]);
     return true;
   };
@@ -70,24 +72,21 @@ export const CartProvider = ({ children }) => {
     const cartDocRef = doc(db, "carts", currentUser.uid);
     // Firestore se ID ko array se hatana
     await updateDoc(cartDocRef, {
-        items: arrayRemove(productId) 
+      items: arrayRemove(productId),
     });
     // Local state ko update karo
-    setCartItems(prev => prev.filter(id => id !== productId));
+    setCartItems((prev) => prev.filter((id) => id !== productId));
     toast.info("Item removed from cart.");
-};
+    playSound(successfulSound);
+  };
 
   const value = {
     cartItems,
     loading,
     addToCart,
-    cartCount: cartItems.length, 
+    cartCount: cartItems.length,
     removeFromCart,
   };
 
-  return (
-  <CartContext.Provider value={value}>
-    {children}
-    </CartContext.Provider>
-    )
+  return <CartContext.Provider value={value}>{children}</CartContext.Provider>;
 };

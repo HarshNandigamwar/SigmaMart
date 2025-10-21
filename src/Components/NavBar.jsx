@@ -14,12 +14,15 @@ import { useAuth } from "../Context/AuthProvider.jsx";
 import { AnimatePresence, motion } from "framer-motion";
 // importing sonner fro notification
 import { toast } from "sonner";
+// import from Hook
+import playSound from '../Hooks/playSound'
 
 const NavBar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const navigate = useNavigate();
   // Add to cart Button
   const { currentUser } = useAuth();
+   const errorSound = '/Sound/Error.mp3'
   function cart() {
     if (currentUser) {
       navigate("/cart");
@@ -30,6 +33,7 @@ const NavBar = () => {
           onClick: () => navigate("/login"),
         },
       });
+      playSound(errorSound);
     }
   }
   // Animation Variable for Mobile nav
@@ -97,6 +101,7 @@ const NavBar = () => {
     if (trimmedInput === "") {
       toast.warning("Search Something");
       setInputValue("");
+      playSound(errorSound);
       return;
     }
     if (productList.includes(normalizedInput)) {
@@ -105,6 +110,7 @@ const NavBar = () => {
     } else {
       toast.error("The item you search is not available yet.");
       setInputValue("");
+      playSound(errorSound);
     }
   }
   const handleKeyDown = (event) => {

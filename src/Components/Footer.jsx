@@ -5,11 +5,14 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../Context/AuthProvider";
 // importing sonner fro notification
 import { toast } from "sonner";
+// import from Hook
+import playSound from "../Hooks/playSound";
 
 const Footer = () => {
   const navigate = useNavigate();
   // Add to cart Button
   const { currentUser } = useAuth();
+  const errorSound = "/Sound/Error.mp3";
   function cart() {
     if (currentUser) {
       navigate("/cart");
@@ -20,6 +23,7 @@ const Footer = () => {
           onClick: () => navigate("/login"),
         },
       });
+      playSound(errorSound);
     }
   }
   return (

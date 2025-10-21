@@ -10,6 +10,7 @@ import DynamicButton from "../Components/LoaderComponents/NormalLoaderComponents
 import { useAuth } from "../Context/AuthProvider.jsx";
 //Importing from Hook
 import useScrollToTop from "../Hooks/useScrollToTop";
+import playSound from '../Hooks/playSound'
 const CreateAC = () => {
   useScrollToTop();
   const { signUp } = useAuth();
@@ -18,10 +19,13 @@ const CreateAC = () => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [formLoading, setFormLoading] = useState(false);
+    const loginSound = '/Sound/login.mp3'
+   const errorSound = '/Sound/Error.mp3'
   const handleSignUp = async (e) => {
     e.preventDefault();
     if (password !== confirmPassword) {
       toast.error("Passwords do not match!");
+      playSound(errorSound);
       return;
     }
     setFormLoading(true);
@@ -30,6 +34,7 @@ const CreateAC = () => {
       await signUp(email, password);
       toast.success("🎉 Account created successfully! Welcome.");
       navigate("/");
+      playSound(loginSound)
     } catch (error) {
       console.log(error);
       let message = "⚠️ Failed to create account. Please try again.";
@@ -39,6 +44,7 @@ const CreateAC = () => {
         message = "Password should be at least 6 characters.";
       }
       toast.error(message);
+      playSound(errorSound);
     } finally {
       setFormLoading(false);
     }

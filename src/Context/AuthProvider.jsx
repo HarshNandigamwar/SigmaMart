@@ -39,10 +39,8 @@ export const AuthProvider = ({ children }) => {
   // Google Login Function
   const googleSignIn = async () => {
     const provider = new GoogleAuthProvider();
-
     try {
       const result = await signInWithPopup(auth, provider);
-      console.log("Google Sign-in Successful!");
       return result.user;
     } catch (error) {
       console.error("Google Sign-in Error:", error.code, error.message);

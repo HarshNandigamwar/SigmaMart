@@ -8,6 +8,7 @@ import axios from "axios";
 import { motion } from "framer-motion";
 // import from Hooks
 import useScrollToTop from "../Hooks/useScrollToTop.js";
+import playSound from "../Hooks/playSound";
 // import skeleton
 import ProductDetailSkeleton from "../Components/LoaderComponents/SkeletonLoaders/ProductDetailSkeleton.jsx";
 // importing from sonner
@@ -22,6 +23,7 @@ const ProductDetail = () => {
   const { id } = useParams();
   // Fetch Data from API using id
   const [product, setProduct] = useState(null);
+  const errorSound = "/Sound/Error.mp3";
   useEffect(() => {
     async function fetchProduct() {
       try {
@@ -52,6 +54,7 @@ const ProductDetail = () => {
         toast.error(errorMessage, {
           duration: 5000,
         });
+        playSound(errorSound);
         setloader(false);
       } finally {
         setloader(false);

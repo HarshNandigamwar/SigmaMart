@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { FaTrash, FaSpinner } from "react-icons/fa6";
 // import from Hooks
 import useScrollToTop from "../Hooks/useScrollToTop.js";
+import playSound from '../Hooks/playSound'
 // import Skeleton
 import CartSkeleton from "../Components/LoaderComponents/SkeletonLoaders/CartSkeleton";
 // importing from context
@@ -21,6 +22,7 @@ const Cart = () => {
   const [deletingId, setDeletingId] = useState(null);
   const [loading, setLoading] = useState(true);
   const [totalPrice, setTotalPrice] = useState(0);
+   const errorSound = '/Sound/Error.mp3'
   // Fetching ALL Product Details
   useEffect(() => {
     if (cartLoading) return;
@@ -51,6 +53,7 @@ const Cart = () => {
       } catch (error) {
         console.error("Error fetching cart details:", error);
         toast.error("Could not load all items in cart.");
+        playSound(errorSound);
       } finally {
         setLoading(false);
       }

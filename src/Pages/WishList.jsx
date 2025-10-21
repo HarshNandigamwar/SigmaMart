@@ -3,6 +3,7 @@ import { FaSpinner, FaTrash } from "react-icons/fa6";
 import { useNavigate } from "react-router-dom";
 // import from Hooks
 import useScrollToTop from "../Hooks/useScrollToTop.js";
+import playSound from "../Hooks/playSound";
 // importing axios for API call
 import axios from "axios";
 // importing from sonner
@@ -26,7 +27,7 @@ const Wishlist = () => {
   const [detailedWishlist, setDetailedWishlist] = useState([]);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
-
+  const errorSound = "/Sound/Error.mp3";
   useEffect(() => {
     if (wishlistLoading) return;
 
@@ -50,6 +51,7 @@ const Wishlist = () => {
       } catch (error) {
         console.error("Error fetching wishlist details:", error);
         toast.error("Could not load all items in wishlist.");
+        playSound(errorSound);
       } finally {
         setLoading(false);
       }
@@ -67,6 +69,7 @@ const Wishlist = () => {
     } catch (error) {
       console.error("Failed to remove item from wishlist:", error);
       toast.error("Could not remove item. Please try again.");
+      playSound(errorSound);
     } finally {
       setDeletingId(null);
     }
@@ -155,5 +158,5 @@ const Wishlist = () => {
     </div>
   );
 };
- 
+
 export default Wishlist;

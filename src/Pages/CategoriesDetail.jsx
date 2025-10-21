@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 // import from Hooks
 import useScrollToTop from "../Hooks/useScrollToTop.js";
+import playSound from "../Hooks/playSound";
 // import skeleton
 import CategoriesDetailSkeleton from "../Components/LoaderComponents/SkeletonLoaders/CategoriesDetailSkeleton";
 // import from components
@@ -20,6 +21,7 @@ const CategoriesDetail = () => {
   // Fetch data of selected categories
   const { categorie } = useParams();
   const [details, setdetails] = useState([]);
+  const errorSound = "/Sound/Error.mp3";
   useEffect(() => {
     async function fetchCategories() {
       try {
@@ -51,6 +53,7 @@ const CategoriesDetail = () => {
         toast.error(errorMessage, {
           duration: 5000,
         });
+        playSound(errorSound);
         setloader(false);
       }
     }

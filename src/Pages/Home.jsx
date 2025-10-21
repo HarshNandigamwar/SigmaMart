@@ -12,8 +12,11 @@ import HomePageCard from "../Components/HomePageCard";
 import HomePageSkeleton from "../Components/LoaderComponents/SkeletonLoaders/HomePageSkeleton";
 // importing from motion
 import { motion } from "framer-motion";
+// import from Hook
+import playSound from "../Hooks/playSound";
 
 const Home = () => {
+  const errorSound = "/Sound/Error.mp3";
   const [Loader, setLoader] = useState(false);
   // Category section Array
   const category = [
@@ -102,6 +105,7 @@ const Home = () => {
         toast.error(errorMessage, {
           duration: 5000,
         });
+        playSound(errorSound);
         setLoader(false);
       }
     }
@@ -138,6 +142,7 @@ const Home = () => {
         toast.error(errorMessage, {
           duration: 5000,
         });
+
         setLoader(false);
       }
     }
@@ -174,6 +179,7 @@ const Home = () => {
         toast.error(errorMessage, {
           duration: 5000,
         });
+
         setLoader(false);
       }
     }
@@ -220,8 +226,6 @@ const Home = () => {
   const Product = (id) => {
     navigate(`/productdetail/${id}`);
   };
-  // Wishlist
-  const wishlist = true;
   return (
     <div>
       {Loader ? (
@@ -256,7 +260,6 @@ const Home = () => {
                   <div key={data.id}>
                     <HomePageCard
                       id={data.id}
-                      wishlist={wishlist}
                       img={data.thumbnail}
                       name={data.title}
                       price={Math.floor(data.price * 83)}

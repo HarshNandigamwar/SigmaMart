@@ -13,10 +13,12 @@ import {
 import { useAuth } from "./AuthProvider.jsx";
 // importing from sonner
 import { toast } from "sonner";
+// import from Hook
+import playSound from "../Hooks/playSound.js";
 
 const WishlistContext = createContext();
 export const useWishlist = () => useContext(WishlistContext);
-
+const successfulSound = "/Sound/Successful.mp3";
 export const WishlistProvider = ({ children }) => {
   const { currentUser, loading: authLoading } = useAuth();
   const [wishlistItems, setWishlistItems] = useState([]); // Product IDs store honge
@@ -48,7 +50,7 @@ export const WishlistProvider = ({ children }) => {
     fetchWishlist();
   }, [currentUser, authLoading]);
 
-  // Item Add Karne Ka Function 
+  // Item Add Karne Ka Function
   const toggleWishlist = async (productId, currentStatus) => {
     if (!currentUser) return false;
 
@@ -77,13 +79,14 @@ export const WishlistProvider = ({ children }) => {
     toast[currentStatus ? "info" : "success"](
       currentStatus ? "Removed from Wishlist." : "Added to Wishlist!"
     );
+    playSound(successfulSound);
     return true;
   };
 
   const value = {
     wishlistItems,
     loading,
-    toggleWishlist, 
+    toggleWishlist,
   };
 
   return (

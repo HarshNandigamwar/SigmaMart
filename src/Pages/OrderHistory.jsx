@@ -12,6 +12,7 @@ import { db } from "../firebase.js";
 import { collection, query, where, orderBy, getDocs } from "firebase/firestore"; 
 // import from Hooks
 import useScrollToTop from "../Hooks/useScrollToTop.js";
+import playSound from '../Hooks/playSound'
 // import Skeleton
 import CartSkeleton from "../Components/LoaderComponents/SkeletonLoaders/CartSkeleton";
 // importing from sonner
@@ -23,6 +24,7 @@ const OrderHistory = () => {
   const { currentUser } = useAuth();
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(true);
+   const errorSound = '/Sound/Error.mp3'
   useEffect(() => {
     if (!currentUser) {
       setLoading(false);
@@ -49,6 +51,7 @@ const OrderHistory = () => {
       } catch (error) {
         console.error("Error fetching order history:", error);
         toast.error("Failed to load order history.");
+        playSound(errorSound);
       } finally {
         setLoading(false);
       }

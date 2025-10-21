@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { FaShoppingCart} from "react-icons/fa";
+import { FaShoppingCart } from "react-icons/fa";
 import { FaSpinner } from "react-icons/fa6";
 // importing from context
 import { useAuth } from "../Context/AuthProvider";
@@ -9,6 +9,8 @@ import { useCart } from "../Context/CartProvider";
 import { toast } from "sonner";
 // importing motion for animation
 import { motion } from "framer-motion";
+// import from Hook
+import playSound from "../Hooks/playSound";
 
 const AddToCartButton = ({ productId, productName }) => {
   const navigate = useNavigate();
@@ -16,6 +18,7 @@ const AddToCartButton = ({ productId, productName }) => {
   const { addToCart, cartItems } = useCart();
   const isItemInCart = cartItems.includes(productId);
   const [loader, setLoader] = useState(false);
+  const errorSound = "/Sound/Error.mp3";
   const handleAction = async () => {
     if (!currentUser) {
       toast.warning("Please login to proceed.", {
@@ -24,10 +27,12 @@ const AddToCartButton = ({ productId, productName }) => {
           onClick: () => navigate("/login"),
         },
       });
+      playSound(errorSound);
       return;
     }
     if (isItemInCart) {
       toast.info("This item is already in your cart!");
+      playSound(errorSound);
       return;
     }
     try {
@@ -39,6 +44,7 @@ const AddToCartButton = ({ productId, productName }) => {
       toast.error("Failed to add item. Please try again.");
       setLoader(false);
       console.error("Cart Update Failed:", error);
+      playSound(errorSound);
     }
   };
 
@@ -51,7 +57,7 @@ const AddToCartButton = ({ productId, productName }) => {
     >
       {loader ? (
         <div className="text-xl flex items-center justify-center animate-spin ">
-          <FaSpinner/>
+          <FaSpinner />
         </div>
       ) : isItemInCart ? (
         <>✅</>

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 // import from Hooks
 import useScrollToTop from "../Hooks/useScrollToTop.js";
+import playSound from "../Hooks/playSound";
 // importing skeleton
 import OrderSkeleton from "../Components/LoaderComponents/SkeletonLoaders/OrderSkeleton";
 // import from components
@@ -24,6 +25,8 @@ const Order = () => {
   const { id } = useParams();
   // Fetching data from API using id
   const [order, setOrder] = useState("");
+  const successfulSound = "/Sound/Successful.mp3";
+  const errorSound = "/Sound/Error.mp3";
   useEffect(() => {
     async function fetchOrder() {
       try {
@@ -54,6 +57,7 @@ const Order = () => {
         toast.error(errorMessage, {
           duration: 5000,
         });
+        playSound(errorSound);
         setLoader(false);
       } finally {
         setLoader(false);
@@ -61,7 +65,6 @@ const Order = () => {
     }
     fetchOrder();
   }, [id]);
-
   const { currentUser } = useAuth();
   const [isOrdering, setIsOrdering] = useState(false);
   const [formData, setFormData] = useState({
@@ -75,10 +78,12 @@ const Order = () => {
     e.preventDefault();
     if (!currentUser) {
       toast.error("Please log in to place an order.");
+      playSound(errorSound);
       return;
     }
     if (!order) {
       toast.error("Product details are missing.");
+      playSound(errorSound);
       return;
     }
     setIsOrdering(true);
@@ -100,9 +105,11 @@ const Order = () => {
       for (let i = 0; i < 10; i++) {
         confetti();
       }
+      playSound(successfulSound);
     } catch (error) {
       console.error("Error placing order: ", error);
       toast.error("Failed to place order. Try again.");
+      playSound(errorSound);
     } finally {
       setIsOrdering(false);
     }

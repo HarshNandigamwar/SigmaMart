@@ -10,6 +10,7 @@ import { useAuth } from "../Context/AuthProvider.jsx";
 import { toast } from "sonner";
 // import from Hook
 import useScrollToTop from "../Hooks/useScrollToTop";
+import playSound from "../Hooks/playSound";
 
 const Login = () => {
   useScrollToTop();
@@ -18,6 +19,8 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [formLoading, setFormLoading] = useState(false);
+  const loginSound = "/Sound/login.mp3";
+  const errorSound = "/Sound/Error.mp3";
   // Email/Password Submission Handler
   const handleEmailPasswordLogin = async (e) => {
     e.preventDefault();
@@ -26,6 +29,7 @@ const Login = () => {
       await emailPasswordSignIn(email, password);
       toast.success("🎉 Welcome back! You are logged in.");
       navigate("/");
+      playSound(loginSound);
     } catch (error) {
       console.log(error);
       let message = "⚠️ Login Failed: Invalid Email or Password.";
@@ -35,6 +39,7 @@ const Login = () => {
         message = "Incorrect password. Please try again.";
       }
       toast.error(message);
+      playSound(errorSound);
     } finally {
       setFormLoading(false);
     }
@@ -45,17 +50,24 @@ const Login = () => {
       await googleSignIn();
       toast.success("🎉 Logged in successfully with Google!");
       navigate("/");
+      playSound(loginSound);
     } catch (error) {
       if (error.code !== "auth/popup-closed-by-user") {
         toast.error("⚠️ Google login failed. Please try again.");
       }
+      playSound(errorSound);
     }
   };
 
   return (
     <div className="p-3 w-full flex mt-5">
       <div className="hidden md:flex w-[50%]">
-        <img src={LoginImage} alt="Login" loading="lazy" className="object-cover " />
+        <img
+          src={LoginImage}
+          alt="Login"
+          loading="lazy"
+          className="object-cover "
+        />
       </div>
       {/* Login Form */}
       <div className="w-full md:w-[50%] p-5 border border-blue-500 rounded-md bg-blue-400/30 flex flex-col space-y-3 ">
