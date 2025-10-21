@@ -114,14 +114,6 @@ const Footer = () => {
               </li>
             </ul>
           </div>
-          {/* Contact */}
-          <div className="space-y-2">
-            <h3 className="text-xl font-bold">Contact Developer</h3>
-            <p>Rajura, Maharashtra, India</p>
-            <a href="shriharshnandigamwar.vercel.app" target="_blank">
-              shriharshnandigamwar.vercel.app
-            </a>
-          </div>
         </div>
         {/* Copy rights */}
         <div className="text-center text-sm pt-10 mt-10 border-t border-[#1e1e1e]">

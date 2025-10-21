@@ -1,5 +1,4 @@
 import React, { createContext, useContext, useState, useEffect } from "react";
-import { FaSpinner } from "react-icons/fa6";
 // importing from firebase.js
 import { auth } from "../firebase";
 // importing from firebase
@@ -8,9 +7,11 @@ import {
   signInWithPopup,
   onAuthStateChanged,
   signInWithEmailAndPassword,
-  createUserWithEmailAndPassword, 
-  signOut, 
+  createUserWithEmailAndPassword,
+  signOut,
 } from "firebase/auth";
+// import from components
+import BrandLoader from "../Components/LoaderComponents/NormalLoaderComponents/BrandLoader";
 
 const AuthContext = createContext();
 
@@ -62,13 +63,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   // Jab tak loading ho rahi hai, screen par loader show hoga.
-  if (loading)
-    return (
-      <div className="flex flex-col items-center justify-center text-center p-10 font-medium text-indigo-600">
-        <FaSpinner className="animate-spin text-2xl"/>
-        Checking User Session...
-      </div>
-    );
+  if (loading) return <BrandLoader />;
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };
