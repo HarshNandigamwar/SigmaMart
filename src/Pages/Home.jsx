@@ -281,7 +281,7 @@ const Home = () => {
                   <div key={data.id}>
                     <HomePageCard
                       id={data.id}
-                      wishlist={wishlist}
+                    
                       img={data.thumbnail}
                       name={data.title}
                       price={Math.floor(data.price * 83)}
@@ -303,7 +303,7 @@ const Home = () => {
                   <div key={data.id}>
                     <HomePageCard
                       id={data.id}
-                      wishlist={wishlist}
+                    
                       img={data.thumbnail}
                       name={data.title}
                       price={Math.floor(data.price * 83)}
@@ -325,7 +325,7 @@ const Home = () => {
                   <div key={data.id}>
                     <HomePageCard
                       id={data.id}
-                      wishlist={wishlist}
+                  
                       img={data.thumbnail}
                       name={data.title}
                       price={Math.floor(data.price * 83)}

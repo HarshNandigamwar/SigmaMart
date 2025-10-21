@@ -18,6 +18,7 @@ const AddToCartButton = ({ productId, productName }) => {
   const { addToCart, cartItems } = useCart();
   const isItemInCart = cartItems.includes(productId);
   const [loader, setLoader] = useState(false);
+   const successfulSound = '/Sound/Successful.mp3'
   const errorSound = "/Sound/Error.mp3";
   const handleAction = async () => {
     if (!currentUser) {
@@ -40,6 +41,7 @@ const AddToCartButton = ({ productId, productName }) => {
       await addToCart(productId);
       toast.success(`${productName} added to cart! 🛒`);
       setLoader(false);
+      playSound(successfulSound)
     } catch (error) {
       toast.error("Failed to add item. Please try again.");
       setLoader(false);
