@@ -21,51 +21,61 @@ const Home = () => {
   // Category section Array
   const category = [
     {
+      id: 1,
       name: "Laptops",
       img: "💻",
       cate: "laptops",
     },
     {
+      id: 2,
       name: "Mobiles",
       img: "📱",
       cate: "smartphones",
     },
     {
+      id: 3,
       name: "Watch",
       img: "⌚",
       cate: "mens-watches",
     },
     {
+      id: 4,
       name: "Shirt",
       img: "👕",
       cate: "mens-shirts",
     },
     {
+      id: 5,
       name: "Beauty",
       img: "💅",
       cate: "beauty",
     },
     {
+      id: 6,
       name: "Shoes",
       img: "👠",
       cate: "womens-shoes",
     },
     {
+      id: 7,
       name: "Furniture",
       img: "🛋️",
       cate: "furniture",
     },
     {
+      id: 8,
       name: "Skincare",
       img: "🧼",
       cate: "skin-care",
     },
     {
+      id: 9,
       name: "Sunglasses",
       img: "👓",
       cate: "sunglasses",
     },
     {
+      id: 10,
       name: "Tops",
       img: "👚",
       cate: "tops",
@@ -109,7 +119,7 @@ const Home = () => {
         setLoader(false);
       }
     }
-    // fetchMobile();
+    fetchMobile();
   }, []);
   // Laptops
   const [laptop, setLaptop] = useState([]);
@@ -146,7 +156,7 @@ const Home = () => {
         setLoader(false);
       }
     }
-    // fetchLaptop();
+    fetchLaptop();
   }, []);
   //Watch
   const [watch, setWatch] = useState([]);
@@ -183,7 +193,7 @@ const Home = () => {
         setLoader(false);
       }
     }
-    // fetchWatch();
+    fetchWatch();
   }, []);
   //Shirt
   const [shirt, setShirt] = useState([]);
@@ -219,13 +229,17 @@ const Home = () => {
         setLoader(false);
       }
     }
-    // fetchShirt();
+    fetchShirt();
   }, []);
   // Forward to product Detail page with ID
-  const navigate = useNavigate();
-  const Product = (id) => {
-    navigate(`/productdetail/${id}`);
-  };
+  // const navigate = useNavigate();
+  // const Product = (id) => {
+  //   navigate(`/productdetail/${id}`);
+  // };
+
+
+  
+
   return (
     <div>
       {Loader ? (
@@ -245,7 +259,7 @@ const Home = () => {
             ))}
           </div>
           {/* Sliding Images */}
-          {/* <SlidingImages /> */}
+          <SlidingImages />
           {/* Main Contents */}
           <div className="p-2 ">
             {/* Mobile Phones */}
@@ -335,6 +349,21 @@ const Home = () => {
           </div>
         </>
       )}
+      {/* Page numbers */}
+      {/* <div className="flex items-center justify-center w-full ">
+        <div className="flex m-1 p-1 gap-2 w-60 overflow-x-scroll ">
+          {category.map((data) => (
+            <div
+              key={data.id}
+              className={`p-2 flex items-center justify-center  ${
+                data.activePage ? "text-blue-500 font-extrabold " : "text-black "
+              } `}
+            >
+              {data.id}
+            </div>
+          ))}
+        </div>
+      </div> */}
     </div>
   );
 };
