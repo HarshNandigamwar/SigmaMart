@@ -109,7 +109,7 @@ const Home = () => {
         setLoader(false);
       }
     }
-    fetchMobile();
+    // fetchMobile();
   }, []);
   // Laptops
   const [laptop, setLaptop] = useState([]);
@@ -146,7 +146,7 @@ const Home = () => {
         setLoader(false);
       }
     }
-    fetchLaptop();
+    // fetchLaptop();
   }, []);
   //Watch
   const [watch, setWatch] = useState([]);
@@ -183,7 +183,7 @@ const Home = () => {
         setLoader(false);
       }
     }
-    fetchWatch();
+    // fetchWatch();
   }, []);
   //Shirt
   const [shirt, setShirt] = useState([]);
@@ -219,7 +219,7 @@ const Home = () => {
         setLoader(false);
       }
     }
-    fetchShirt();
+    // fetchShirt();
   }, []);
   // Forward to product Detail page with ID
   const navigate = useNavigate();
@@ -245,7 +245,7 @@ const Home = () => {
             ))}
           </div>
           {/* Sliding Images */}
-          <SlidingImages />
+          {/* <SlidingImages /> */}
           {/* Main Contents */}
           <div className="p-2 ">
             {/* Mobile Phones */}

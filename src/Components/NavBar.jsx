@@ -15,17 +15,17 @@ import { AnimatePresence, motion } from "framer-motion";
 // importing sonner fro notification
 import { toast } from "sonner";
 // import from Hook
-import playSound from '../Hooks/playSound'
+import playSound from "../Hooks/playSound";
 
 const NavBar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const navigate = useNavigate();
-  // Add to cart Button
+  // Navigation
   const { currentUser } = useAuth();
-   const errorSound = '/Sound/Error.mp3'
-  function cart() {
+  const errorSound = "/Sound/Error.mp3";
+  function nav(val) {
     if (currentUser) {
-      navigate("/cart");
+      navigate(`/${val}`);
     } else {
       toast.warning("Please login to proceed.", {
         action: {
@@ -154,7 +154,7 @@ const NavBar = () => {
             <motion.button
               whileTap={{ scale: 0.9 }}
               className="text-xl md:text-2xl "
-              onClick={() => cart()}
+              onClick={() => nav("cart")}
             >
               <FaShoppingCart />
             </motion.button>
@@ -228,14 +228,15 @@ const NavBar = () => {
                 </p>
               </NavLink>
               {/* wishlist */}
-              <NavLink to={"wishlist"}>
-                <p
-                  className={`  flex items-center gap-3 text-xl font-bold p-2 `}
-                  onClick={() => setMenuOpen(!menuOpen)}
-                >
-                  <FaHeart className={`fill-white `} /> Wishlist
-                </p>
-              </NavLink>
+              <p
+                className={`  flex items-center gap-3 text-xl font-bold p-2 `}
+                onClick={() => {
+                  setMenuOpen(!menuOpen);
+                  nav("wishlist");
+                }}
+              >
+                <FaHeart className={`fill-white `} /> Wishlist
+              </p>
               {/* categories */}
               <NavLink to={"categories"}>
                 <p
@@ -246,14 +247,15 @@ const NavBar = () => {
                 </p>
               </NavLink>
               {/* Order History */}
-              <NavLink to={"orderhistory"}>
-                <p
-                  className={`  flex items-center gap-3 text-xl font-bold p-2 `}
-                  onClick={() => setMenuOpen(!menuOpen)}
-                >
-                  <FaBox className={`fill-white `} /> My Orders
-                </p>
-              </NavLink>
+              <p
+                className={`  flex items-center gap-3 text-xl font-bold p-2 `}
+                onClick={() => {
+                  setMenuOpen(!menuOpen);
+                  nav("orderhistory");
+                }}
+              >
+                <FaBox className={`fill-white `} /> My Orders
+              </p>
               {/* About Us */}
               <NavLink to={"about"}>
                 <p
@@ -264,14 +266,15 @@ const NavBar = () => {
                 </p>
               </NavLink>
               {/* Profile */}
-              <NavLink to={"profile"}>
-                <p
-                  className={`  flex items-center gap-3 text-xl font-bold p-2 `}
-                  onClick={() => setMenuOpen(!menuOpen)}
-                >
-                  <FaUser className={`fill-white `} /> Profile
-                </p>
-              </NavLink>
+              <p
+                className={`  flex items-center gap-3 text-xl font-bold p-2 `}
+                onClick={() => {
+                  setMenuOpen(!menuOpen);
+                  nav("profile");
+                }}
+              >
+                <FaUser className={`fill-white `} /> Profile
+              </p>
             </div>
           </motion.div>
         )}

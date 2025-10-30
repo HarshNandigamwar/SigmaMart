@@ -10,12 +10,12 @@ import playSound from "../Hooks/playSound";
 
 const Footer = () => {
   const navigate = useNavigate();
-  // Add to cart Button
+  // Navigation
   const { currentUser } = useAuth();
   const errorSound = "/Sound/Error.mp3";
-  function cart() {
+  function nav(val) {
     if (currentUser) {
-      navigate("/cart");
+      navigate(`/${val}`);
     } else {
       toast.warning("Please login to proceed.", {
         action: {
@@ -75,15 +75,15 @@ const Footer = () => {
                 <a>About Us</a>
               </li>
               {/* Cart */}
-              <li onClick={() => cart()}>
+              <li onClick={() => nav("cart")}>
                 <a>Cart Product</a>
               </li>
               {/* Wishlist */}
-              <li onClick={() => navigate("/wishlist")}>
+              <li onClick={() => nav("wishlist")}>
                 <a>Wishlist</a>
               </li>
               {/* Profile */}
-              <li onClick={() => navigate("/profile")}>
+              <li onClick={() => nav("profile")}>
                 <a>Profile</a>
               </li>
             </ul>
